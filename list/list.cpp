@@ -1,5 +1,6 @@
 #include <iostream> // for std::cout
 #include <cstdio> // for printf
+#include <utility> // for swap
 
 class link {
 public:
@@ -37,6 +38,16 @@ public:
       current = current->ptr;
       delete tmp;
     }
+  }
+
+  list &operator=(list other) {
+    swap(other);
+    return *this;
+  }
+
+  void swap(list &other) {
+    std::swap(first_, other.first_);
+    std::swap(last_, other.last_);
   }
 
   bool empty() const {
@@ -119,22 +130,25 @@ private:
 
 int main(int argc, char const *argv[]) {
   list my_list;
+  list my_list_2;
 
-  for (int i = 0; i < 10; i++) {
+  for (int i = 0; i < 10000; i++) {
     my_list.push_back(i);
   }
-  my_list.print();
+  my_list_2 = my_list;
 
-  printf("After remove first\n");
-  my_list.remove_first();
-  my_list.print();
+  // my_list.print();
 
-  printf("After remove last\n");
-  my_list.remove_last();
-  my_list.print();
+  // printf("After remove first\n");
+  // my_list.remove_first();
+  // my_list.print();
 
-  printf("Reverse\n");
-  my_list.reverse().print();
+  // printf("After remove last\n");
+  // my_list.remove_last();
+  // my_list.print();
+
+  // printf("Reverse\n");
+  // my_list.reverse().print();
 
   return 0;
 }
