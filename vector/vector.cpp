@@ -36,6 +36,17 @@ public:
     return buffer_[index];
   }
 
+  void push_back(const Type &value) {
+    Type *new_buffer = new Type[size_ + 1];
+    for (size_t i = 0; i < size_; i++) {
+      new_buffer[i] = buffer_[i];
+    }
+    new_buffer[size_] = value;
+    delete[] buffer_;
+    size_ = size_ + 1;
+    buffer_ = new_buffer;
+  }
+
   /* Assignment operator */
   vector &operator=(const vector &other) {
     /* Self assignment check */
