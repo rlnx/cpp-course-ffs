@@ -11,6 +11,14 @@ inline bool IsSeparator(char sep) {
   return sep == ' ' || sep == '\0';
 }
 
+inline bool IsOperator(const std::string &expr) {
+  return false;
+}
+
+inline bool IsNumber(const std::string &expr) {
+  return false;
+}
+
 // expr = "12 33 34 +" -> list = [ "12", "33", "34", "+" ]
 inline std::list<std::string> Split(const std::string &expr) {
   const char *expr_c_str = expr.c_str();
