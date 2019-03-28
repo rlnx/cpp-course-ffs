@@ -12,11 +12,31 @@ inline bool IsSeparator(char sep) {
 }
 
 inline bool IsOperator(const std::string &expr) {
-  return false;
+  return (expr.size() == 1) && (expr[0] == '+' ||
+                                expr[0] == '-' ||
+                                expr[0] == '*' ||
+                                expr[0] == '/');
 }
 
 inline bool IsNumber(const std::string &expr) {
-  return false;
+  bool is_number = true;
+  for (char c : expr) {
+    is_number = is_number && std::isdigit(c);
+  }
+
+  // The same:
+  // for (char c : expr) {
+  //   if (!std::isdigit(c)) {
+  //     return false;
+  //   }
+  // }
+
+  // The same:
+  // for (size_t i = 0; i < expr.size(); i++) {
+  //   const char c = expr[i];
+  //   is_number = is_number && std::isdigit(c);
+  // }
+  return is_number;
 }
 
 // expr = "12 33 34 +" -> list = [ "12", "33", "34", "+" ]
