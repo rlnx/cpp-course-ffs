@@ -71,13 +71,12 @@ std::list<Token> ParseTokens(const std::string &expr) {
 }
 
 int main(int argc, char const *argv[]) {
-  // if (argc <= 1) {
-  //   std::printf("Wrong input, expected expression\n");
-  //   return -1;
-  // }
+  if (argc <= 1) {
+    std::printf("Wrong input, expected expression\n");
+    return -1;
+  }
 
-  // const std::string expression = argv[1];
-  const std::string expression = "12 23 34 + +";
+  const std::string expression = argv[1];
   auto tokens = ParseTokens(expression);
   int result = Evaluate(tokens);
   std::cout << result << std::endl;
